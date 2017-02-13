@@ -61,14 +61,15 @@ fileref.close()
 nytimes_headlines=[]
 soup = BeautifulSoup(html_text,'html.parser')
 i=0
+j=0
 for links in soup.find_all("h2",{'class':'story-heading'},text=True):
     #if heads.text !="":                                                                                                                                                         
-    if i<10:
+    if i < 10:
         nytimes_headlines.append(links.text)
         i+=1
 #print(nytimes_headlines)
 #print(len(nytimes_headlines))
-
+# highlight text == true to control 
 
 
 #####################
@@ -102,15 +103,15 @@ umsi_titles = {}
 ## Find the container that holds the title that belongs to that person (HINT: a class name)
 ## Grab the text of each of those elements and put them in the dictionary umsi_titles properly
 
-names=[]
-position=[]
+names = []
+position = []
 for links in soup.find_all("div",{'class':'field field-name-title field-type-ds field-label-hidden'}):
     names.append(links.text)
 
 for links in soup.find_all("div",{'class':'field field-name-field-person-titles field-type-text field-label-hidden'}):
     position.append(links.text)
 
-umsi_titles=dict(zip(names,position))
+umsi_titles = dict(zip(names,position))
 
 
 
